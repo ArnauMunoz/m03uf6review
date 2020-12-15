@@ -33,11 +33,12 @@ public class HibernateMain {
     static Session sessio = Controlador.getSessionFactory().openSession();
     static Transaction tx = sessio.beginTransaction();
     static Persona persona = new Persona();
+    static String viva;
 
     public static void main(String[] args) {
         showPersona(2);
         showLlistaPersones();
-        
+
         tx.commit();
         sessio.close();
 
@@ -49,12 +50,19 @@ public class HibernateMain {
 
     public static void showPersona(Integer id) {
         Persona p = sessio.get(Persona.class, id);
+
+        if (p.getPersona_viva() == true) {
+            viva = "Si.";
+        } else {
+            viva = "No.";
+        }
+
         System.out.println("\n------------------Persona ID: " + p.getPersona_id() + " ------------------");
-            System.out.println("-Nom: " + p.getPersona_nom());
-            System.out.println("-Direccio: " + p.getPersona_direccio());
-            System.out.println("-Altura: " + p.getPersona_altura());
-            System.out.println("-Viva: " + p.getPersona_viva());
-            System.out.println("-Nom: " + p.getPersona_naixement());
+        System.out.println("-Nom: " + p.getPersona_nom());
+        System.out.println("-Direccio: " + p.getPersona_direccio());
+        System.out.println("-Altura: " + p.getPersona_altura());
+        System.out.println("-Viva: " + viva);
+        System.out.println("-Nom: " + p.getPersona_naixement());
     }
 
     public static void showLlistaPersones() {
@@ -64,11 +72,18 @@ public class HibernateMain {
 
         for (Iterator<Persona> it = llista.iterator(); it.hasNext();) {
             persona = it.next();
+
+            if (persona.getPersona_viva() == true) {
+                viva = "Si.";
+            } else {
+                viva = "No.";
+            }
+
             System.out.println("\n------------------Persona ID: " + persona.getPersona_id() + " ------------------");
             System.out.println("-Nom: " + persona.getPersona_nom());
             System.out.println("-Direccio: " + persona.getPersona_direccio());
             System.out.println("-Altura: " + persona.getPersona_altura());
-            System.out.println("-Viva: " + persona.getPersona_viva());
+            System.out.println("-Viva: " + viva);
             System.out.println("-Nom: " + persona.getPersona_naixement());
 
         }
