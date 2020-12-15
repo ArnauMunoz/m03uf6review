@@ -18,6 +18,7 @@ CREATE TABLE persona(
 
 );
 
+
 /*INSERTS*/
 INSERT INTO persona (persona_nom, persona_direccio, persona_altura, persona_viva, persona_naixement) 
               VALUES('Arnau','Carrer Sant Jordi, 3, Rub�', 190.0, true, '1999-04-20');
